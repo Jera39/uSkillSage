@@ -1,0 +1,7 @@
+{
+  "name": "uSkillSage",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

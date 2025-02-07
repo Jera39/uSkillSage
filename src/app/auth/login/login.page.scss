@@ -1,0 +1,152 @@
+ion-toolbar {
+    --opacity: 0.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.header-toolbar {
+    padding: 50px 20px;
+}
+
+.fondo-fantasy {
+    --background: url('https://i.postimg.cc/NfNjH6Jh/fantasy-6835790.jpg') no-repeat center center/cover;
+}
+
+.fondo-sci-fi {
+    --background: url('https://i.postimg.cc/90CQGJH2/ai-generated-8548276.jpg') no-repeat center center/cover;
+}
+
+.fondo-mitology {
+    --background: url('https://i.postimg.cc/8km51QLz/dragon-9017341-1920.png') no-repeat center center/cover;
+}
+
+.fondo-default {
+    --background: url('https://i.postimg.cc/d3xgqVBf/warrior-7795480.jpg') no-repeat center center/cover;
+}
+
+ion-card {
+    --background: rgba(0, 0, 0, 0.7);
+    width: 90%;
+    max-width: 500px;
+    margin-bottom: 20px;
+    margin: 30px auto;
+    border-radius: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    padding: 30px;
+}
+
+// ion-card-header{
+//     margin: 30px 30px 0px;
+// }
+
+ion-card-title {
+    font-weight: bold;
+    font-size: 1.7em;
+}
+
+ion-card-subtitle {
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+ion-input {
+    ::ng-deep .label-text {
+        font-weight: bold;
+
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    margin: 20px 0;
+    --highlight-color-focused: white;
+}
+
+ion-select {
+    font-weight: bold;
+    margin: 20px 0;
+    --highlight-color-focused: white;
+}
+
+ion-button {
+    margin-top: 50px;
+    --background: #6a11cb;
+    color: white
+}
+
+.ion-img {
+    width: 85%;
+    max-width: 400px;
+    margin: 20px auto;
+
+    img {
+        border-radius: 10px;
+        border: solid 10px rgba(0, 0, 0, 0.4);
+    }
+}
+
+h1 {
+    font-weight: bolder;
+    font-size: 2.5rem;
+}
+
+.vistaPrevia{
+    font-weight: bolder;
+    text-align: center;
+    transform: scale(0.8);
+    -webkit-text-stroke: 0.5px black;
+}
+
+p {
+    font-size: 1.2rem;
+}
+
+/* Media Queries para pantallas pequeñas (celulares) */
+@media (max-width: 768px) {
+
+    /* Reducir padding en el header */
+    .header-toolbar {
+        padding: 10px 10px;
+        /* Menos espacio en celulares */
+    }
+
+    /* Ajustar el tamaño del ion-card */
+    ion-card {
+        padding: 10px;
+        /* Menos padding en celulares */
+        border-radius: 15px;
+        /* Bordes menos pronunciados */
+    }
+
+    /* Reducir el tamaño de las fuentes */
+    ion-card-title {
+        font-size: 1.5em;
+    }
+
+    ion-card-subtitle {
+        font-size: 1.1em;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    /* Ajustar el tamaño de la imagen */
+    .ion-img {
+        img {
+            border: solid 5px rgba(0, 0, 0, 0.4);
+            /* Borde más pequeño */
+        }
+    }
+
+    /* Ajustar el margen del botón */
+    ion-button {
+        margin-top: 30px;
+    }
+}

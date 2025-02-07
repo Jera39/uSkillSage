@@ -1,0 +1,43 @@
+<ion-content [ngClass]="claseFondo()" [fullscreen]="true">
+  <ion-header>
+    <ion-toolbar>
+      <div class="header-toolbar">
+        <h1 class="ion-text-center">Registra tu Cuenta de Héroe</h1>
+        <p class="ion-text-center">
+          Crea tu perfil y comienza tu aventura épica.
+        </p>
+      </div>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Elige tu Identidad Heroica</ion-card-title>
+      <ion-card-subtitle>¡Conviertete en alguien grande!</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="form-content">
+        <ion-input fill="outline" type="text" label="Nombre de Usuario" labelPlacement="floating"
+          placeholder="Ej. GerreroSabio"></ion-input>
+        <ion-input fill="outline" type="email" label="Correo Electrónico" labelPlacement="floating"
+          placeholder="ejemplo@dominio.com"></ion-input>
+        <ion-input fill="outline" type="password" label="Contraseña" labelPlacement="floating"
+          placeholder="Crea una contraseña segura"></ion-input>
+          <ion-select fill="outline" label="Género Narrativo" labelPlacement="floating" value="genero" multiple="false" placeholder="Lograras ser digno?" [(ngModel)]="generoNarrativo">
+            <ion-select-option value="fantasy">Fantasía</ion-select-option>
+            <ion-select-option value="sci-fi">Ciencia Ficción</ion-select-option>
+            <ion-select-option value="mitology">Mitología</ion-select-option>
+          </ion-select>
+        <ion-button expand="block" fill="clear" shape="round">
+          Registrar y Comenzar Aventura
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+    <h1 class="vistaPrevia">Vista Previa del Tema</h1>
+    <div class="ion-img">
+      <img [src]="fondo()">
+    </div>
+</ion-content>

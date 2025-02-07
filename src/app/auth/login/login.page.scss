@@ -46,11 +46,15 @@ ion-card {
 ion-card-title {
     font-weight: bold;
     font-size: 1.7em;
+    color: white;
+
 }
 
 ion-card-subtitle {
     font-weight: bold;
     font-size: 1.3em;
+    color: white;
+
 }
 
 ion-input {
@@ -90,6 +94,8 @@ ion-button {
 h1 {
     font-weight: bolder;
     font-size: 2.5rem;
+    color: white;
+
 }
 
 .vistaPrevia{
@@ -97,10 +103,13 @@ h1 {
     text-align: center;
     transform: scale(0.8);
     -webkit-text-stroke: 0.5px black;
+    color: white;
+
 }
 
 p {
     font-size: 1.2rem;
+    color: white;
 }
 
 /* Media Queries para pantallas pequeñas (celulares) */

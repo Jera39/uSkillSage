@@ -1,3 +1,9 @@
+ion-icon {
+    color: white;
+    zoom: 2;
+    margin: 20px 0px -10px 20px;
+}
+
 ion-toolbar {
     --background: rgba(0, 0, 0, 0.4);
     display: flex;
@@ -8,7 +14,7 @@ ion-toolbar {
 }
 
 .header-toolbar {
-    padding: 50px 20px;
+    padding: 0px 20px 20px 40px;
 }
 
 .fondo-fantasy {
@@ -98,7 +104,7 @@ h1 {
 
 }
 
-.vistaPrevia{
+.vistaPrevia {
     font-weight: bolder;
     text-align: center;
     transform: scale(0.8);
@@ -112,44 +118,43 @@ p {
     color: white;
 }
 
-/* Media Queries para pantallas pequeñas (celulares) */
 @media (max-width: 768px) {
 
-    /* Reducir padding en el header */
-    .header-toolbar {
-        padding: 10px 10px;
-        /* Menos espacio en celulares */
+    ion-icon {
+        zoom: 1.5;
+        margin: 5px 0px -10px 5px;
     }
 
-    /* Ajustar el tamaño del ion-card */
+    .header-toolbar {
+        padding: 0px 20px 10px;
+    }
+
     ion-card {
         padding: 10px;
-        /* Menos padding en celulares */
         border-radius: 15px;
-        /* Bordes menos pronunciados */
+
     }
 
-    /* Reducir el tamaño de las fuentes */
     ion-card-title {
-        font-size: 1.5em;
+        font-size: 1.3em;
     }
 
     ion-card-subtitle {
-        font-size: 1.1em;
+        font-size: 1em;
     }
 
     h1 {
-        font-size: 2rem;
+        font-size: 1.7rem;
     }
 
     p {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     /* Ajustar el tamaño de la imagen */
     .ion-img {
         img {
-            border: solid 5px rgba(0, 0, 0, 0.4);
+            border: solid 7px rgba(0, 0, 0, 0.4);
             /* Borde más pequeño */
         }
     }

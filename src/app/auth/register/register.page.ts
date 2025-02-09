@@ -1,4 +1,5 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -11,9 +12,13 @@ export class RegisterPage implements OnInit {
   generoNarrativo: string = ''
   imagenFondo: string = ''
 
-  constructor() { }
+  constructor(private navCtrl: NavController) { }
 
   ngOnInit() {
+  }
+
+  backHome(){
+    this.navCtrl.back();
   }
 
   ngOnChanges(changes: SimpleChanges) {

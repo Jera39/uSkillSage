@@ -1,4 +1,5 @@
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -11,9 +12,13 @@ export class LoginPage implements OnInit {
   generoNarrativo: string = ''
   imagenFondo: string = ''
 
-  constructor() { }
+  constructor(private navCtrl: NavController) { }
 
   ngOnInit() {
+  }
+
+  backHome(){
+    this.navCtrl.back();
   }
 
   ngOnChanges(changes: SimpleChanges) {

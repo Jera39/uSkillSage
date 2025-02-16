@@ -1,3 +1,7 @@
+ion-content {
+    --background: url('https://i.postimg.cc/d3xgqVBf/warrior-7795480.jpg') no-repeat center center/cover;
+}
+
 ion-icon {
     color: white;
     zoom: 2.3;
@@ -17,21 +21,21 @@ ion-toolbar {
     padding: 10px 20px 30px;
 }
 
-.fondo-fantasy {
-    --background: url('https://i.postimg.cc/NfNjH6Jh/fantasy-6835790.jpg') no-repeat center center/cover;
-}
+// .fondo-fantasy {
+//     --background: url('https://i.postimg.cc/NfNjH6Jh/fantasy-6835790.jpg') no-repeat center center/cover;
+// }
 
-.fondo-sci-fi {
-    --background: url('https://i.postimg.cc/90CQGJH2/ai-generated-8548276.jpg') no-repeat center center/cover;
-}
+// .fondo-sci-fi {
+//     --background: url('https://i.postimg.cc/90CQGJH2/ai-generated-8548276.jpg') no-repeat center center/cover;
+// }
 
-.fondo-mitology {
-    --background: url('https://i.postimg.cc/8km51QLz/dragon-9017341-1920.png') no-repeat center center/cover;
-}
+// .fondo-mitology {
+//     --background: url('https://i.postimg.cc/8km51QLz/dragon-9017341-1920.png') no-repeat center center/cover;
+// }
 
-.fondo-default {
-    --background: url('https://i.postimg.cc/d3xgqVBf/warrior-7795480.jpg') no-repeat center center/cover;
-}
+// .fondo-default {
+//     --background: url('https://i.postimg.cc/d3xgqVBf/warrior-7795480.jpg') no-repeat center center/cover;
+// }
 
 ion-card {
     --background: rgba(0, 0, 0, 0.7);

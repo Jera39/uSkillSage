@@ -1,5 +1,7 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit, SimpleChanges } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +14,22 @@ export class RegisterPage implements OnInit {
   generoNarrativo: string = ''
   imagenFondo: string = ''
 
-  constructor(private navCtrl: NavController) { }
+
+  user = {
+    heroName: '', // Nombre del héroe
+    email: '',    // Correo electrónico
+    genre: '',    // Género narrativo
+    password: ''  // Contraseña
+  };
+
+  error: string | null = null;
+
+  constructor(
+    private navCtrl: NavController, 
+    private authService: AuthService, 
+    private router: Router,
+    private alertController: AlertController,
+  ) { }
 
   ngOnInit() {
   }
@@ -27,8 +44,37 @@ export class RegisterPage implements OnInit {
     }
   }
 
+  async register() {
+    try {
+      const response = await this.authService.register(this.user).toPromise();
+      console.log('Registro exitoso:', response);
+      this.router.navigate(['/login']); // Redirigir al login después del registro
+    } catch (err: any) {
+      console.error('Error al registrar:', err);
+  
+      // Almacenar el mensaje de error en la variable `error`
+      if (err.error && err.error.error) {
+        this.error = err.error.error; // Mensaje del backend
+      } else {
+        this.error = 'Hubo un problema al registrar el usuario.';
+      }
+  
+      // Mostrar una alerta con el mensaje de error
+      this.showAlert('Error', this.error || 'Ocurrió un error inesperado.');
+    }
+  }
+
+  async showAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header: header,
+      message: message,
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
   claseFondo() {
-    switch (this.generoNarrativo) {
+    switch (this.user.genre) {
       case 'fantasy':
         return 'fondo-fantasy';
       case 'sci-fi':
@@ -41,7 +87,7 @@ export class RegisterPage implements OnInit {
   }
 
   fondo() {
-    switch (this.generoNarrativo) {
+    switch (this.user.genre) {
       case 'fantasy':
         return 'https://i.postimg.cc/NfNjH6Jh/fantasy-6835790.jpg';
       case 'sci-fi':

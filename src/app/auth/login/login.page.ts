@@ -1,5 +1,7 @@
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { AlertController, NavController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,10 +11,19 @@ import { NavController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  generoNarrativo: string = ''
-  imagenFondo: string = ''
+  credentials = {
+    identifier: '', // Puede ser heroName o email
+    password: ''
+  };
+  
+  error: string | null = null;
 
-  constructor(private navCtrl: NavController) { }
+  constructor(
+    private authService: AuthService, 
+    private navCtrl: NavController, 
+    private router: Router,
+    private alertController: AlertController,
+  ) { }
 
   ngOnInit() {
   }
@@ -21,36 +32,43 @@ export class LoginPage implements OnInit {
     this.navCtrl.back();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['generoNarrativo']) {
-      this.imagenFondo = this.fondo();
+  async login() {
+    try {
+      // Verificar que los campos no estén vacíos
+      if (!this.credentials.identifier || !this.credentials.password) {
+        this.error = 'Por favor, completa todos los campos.';
+        this.showAlert('Error', this.error);
+        return;
+      }
+  
+      const response = await this.authService.login(this.credentials).toPromise();
+      console.log('Inicio de sesión exitoso:', response);
+  
+      // Guardar información del usuario en el almacenamiento local
+      localStorage.setItem('user', JSON.stringify(response.user));
+  
+      // Redirigir al home después del login
+      this.router.navigate(['/home']);
+    } catch (err: any) {
+      console.error('Error al iniciar sesión:', err);
+  
+      // Almacenar el mensaje de error en la variable `error`
+      if (err.error && err.error.error) {
+        this.error = err.error.error; // Mensaje del backend
+      } else {
+        this.error = 'Hubo un problema al iniciar sesión.';
+      }
+  
+      // Mostrar una alerta con el mensaje de error
+      this.showAlert('Error', this.error || 'Ocurrió un error inesperado.');
     }
   }
-
-  claseFondo(){
-    switch (this.generoNarrativo) {
-      case 'fantasy':
-        return 'fondo-fantasy';
-      case 'sci-fi':
-        return 'fondo-sci-fi';
-      case 'mitology':
-        return 'fondo-mitology';
-      default:
-        return 'fondo-default';
-    }
+  async showAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header: header,
+      message: message,
+      buttons: ['OK']
+    });
+    await alert.present();
   }
-
-  fondo(){
-    switch (this.generoNarrativo) {
-      case 'fantasy':
-        return 'https://i.postimg.cc/NfNjH6Jh/fantasy-6835790.jpg';
-      case 'sci-fi':
-        return 'https://i.postimg.cc/90CQGJH2/ai-generated-8548276.jpg';
-      case 'mitology':
-        return 'https://i.postimg.cc/8km51QLz/dragon-9017341-1920.png';
-      default:
-        return 'https://i.postimg.cc/d3xgqVBf/warrior-7795480.jpg';
-    }
-  }
-
 }

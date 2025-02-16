@@ -1,11 +1,11 @@
-<ion-content [ngClass]="claseFondo()" [fullscreen]="true">
+<ion-content [fullscreen]="true">
   <ion-header>
     <ion-toolbar>
       <ion-icon name="close" (click)="backHome()"></ion-icon>
       <div class="header-toolbar">
-        <h1 class="ion-text-center">Registra tu Cuenta de Héroe</h1>
+        <h1 class="ion-text-center">Accede tu Cuenta de Héroe</h1>
         <p class="ion-text-center">
-          Crea tu perfil y comienza tu aventura épica.
+          Demuestra tus Logros
         </p>
       </div>
     </ion-toolbar>
@@ -13,32 +13,24 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Elige tu Identidad Heroica</ion-card-title>
+      <ion-card-title>¿Lograras ser digno?</ion-card-title>
       <ion-card-subtitle>¡Conviertete en alguien grande!</ion-card-subtitle>
     </ion-card-header>
 
     <ion-card-content>
       <div class="form-content">
-        <ion-input fill="outline" type="text" label="Nombre de Usuario" labelPlacement="floating"
+        <ion-input fill="outline" type="text" label="Nombre de Usuario" labelPlacement="floating" [(ngModel)]="credentials.identifier"
           placeholder="Ej. GerreroSabio"></ion-input>
-        <ion-input fill="outline" type="email" label="Correo Electrónico" labelPlacement="floating"
-          placeholder="ejemplo@dominio.com"></ion-input>
-        <ion-input fill="outline" type="password" label="Contraseña" labelPlacement="floating"
+        <ion-input fill="outline" type="password" label="Contraseña" labelPlacement="floating" [(ngModel)]="credentials.password"
           placeholder="Crea una contraseña segura"></ion-input>
-          <ion-select fill="outline" label="Género Narrativo" labelPlacement="floating" value="genero" multiple="false" placeholder="Lograras ser digno?" [(ngModel)]="generoNarrativo">
-            <ion-select-option value="fantasy">Fantasía</ion-select-option>
-            <ion-select-option value="sci-fi">Ciencia Ficción</ion-select-option>
-            <ion-select-option value="mitology">Mitología</ion-select-option>
-          </ion-select>
-        <ion-button expand="block" fill="clear" shape="round">
-          Registrar y Comenzar Aventura
+
+          <div *ngIf="error" class="error-message">
+            {{ error }}
+          </div>
+        <ion-button expand="block" fill="clear" shape="round" (click)="login()">
+          Comenzar Aventura
         </ion-button>
       </div>
     </ion-card-content>
   </ion-card>
-
-    <h1 class="vistaPrevia">Vista Previa del Tema</h1>
-    <div class="ion-img">
-      <img [src]="fondo()">
-    </div>
 </ion-content>

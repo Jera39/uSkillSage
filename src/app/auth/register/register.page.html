@@ -19,18 +19,18 @@
 
     <ion-card-content>
       <div class="form-content">
-        <ion-input fill="outline" type="text" label="Nombre de Usuario" labelPlacement="floating"
+        <ion-input fill="outline" type="text" label="Nombre de Usuario" labelPlacement="floating" [(ngModel)]="user.heroName"
           placeholder="Ej. GerreroSabio"></ion-input>
-        <ion-input fill="outline" type="email" label="Correo Electrónico" labelPlacement="floating"
+        <ion-input fill="outline" type="email" label="Correo Electrónico" labelPlacement="floating" [(ngModel)]="user.email"
           placeholder="ejemplo@dominio.com"></ion-input>
-        <ion-input fill="outline" type="password" label="Contraseña" labelPlacement="floating"
+        <ion-input fill="outline" type="password" label="Contraseña" labelPlacement="floating" [(ngModel)]="user.password"
           placeholder="Crea una contraseña segura"></ion-input>
-          <ion-select fill="outline" label="Género Narrativo" labelPlacement="floating" value="genero" multiple="false" placeholder="Lograras ser digno?" [(ngModel)]="generoNarrativo">
+          <ion-select fill="outline" label="Género Narrativo" labelPlacement="floating" value="genero" multiple="false" placeholder="Lograras ser digno?" [(ngModel)]="user.genre">
             <ion-select-option value="fantasy">Fantasía</ion-select-option>
             <ion-select-option value="sci-fi">Ciencia Ficción</ion-select-option>
             <ion-select-option value="mitology">Mitología</ion-select-option>
           </ion-select>
-        <ion-button expand="block" fill="clear" shape="round">
+        <ion-button expand="block" fill="clear" shape="round" (click)="register()">
           Registrar y Comenzar Aventura
         </ion-button>
       </div>

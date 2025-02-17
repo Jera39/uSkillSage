@@ -90,13 +90,13 @@ export class RegisterPage implements OnInit {
   fondo() {
     switch (this.user.genre) {
       case 'Fantasía':
-        return 'https://i.postimg.cc/NfNjH6Jh/fantasy-6835790.jpg';
+        return 'https://i.postimg.cc/KY3wr7xx/fantasy-6835790.jpg';
       case 'Ciencia Ficción':
-        return 'https://i.postimg.cc/90CQGJH2/ai-generated-8548276.jpg';
+        return 'https://i.postimg.cc/ryfjs02J/ai-generated-8548276.jpg';
       case 'Mitología':
-        return 'https://i.postimg.cc/8km51QLz/dragon-9017341-1920.png';
+        return 'https://i.postimg.cc/8k4KvXML/dragon-9017341-1920.png';
       default:
-        return 'https://i.postimg.cc/d3xgqVBf/warrior-7795480.jpg';
+        return 'https://i.postimg.cc/qqWCndLk/warrior-7795480.jpg';
     }
   }
 

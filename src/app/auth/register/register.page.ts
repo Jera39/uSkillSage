@@ -89,11 +89,11 @@ export class RegisterPage implements OnInit {
 
   fondo() {
     switch (this.user.genre) {
-      case 'fantasy':
+      case 'Fantasía':
         return 'https://i.postimg.cc/NfNjH6Jh/fantasy-6835790.jpg';
-      case 'sci-fi':
+      case 'Ciencia Ficción':
         return 'https://i.postimg.cc/90CQGJH2/ai-generated-8548276.jpg';
-      case 'mitology':
+      case 'Mitología':
         return 'https://i.postimg.cc/8km51QLz/dragon-9017341-1920.png';
       default:
         return 'https://i.postimg.cc/d3xgqVBf/warrior-7795480.jpg';

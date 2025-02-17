@@ -78,7 +78,7 @@ export class RegisterPage implements OnInit {
     switch (this.user.genre) {
       case 'Fantasía':
         return 'fondo-fantasy';
-      case 'Ciencia Ficción':
+      case 'CienciaFicción':
         return 'fondo-sci-fi';
       case 'Mitología':
         return 'fondo-mitology';
@@ -91,7 +91,7 @@ export class RegisterPage implements OnInit {
     switch (this.user.genre) {
       case 'Fantasía':
         return 'https://i.postimg.cc/KY3wr7xx/fantasy-6835790.jpg';
-      case 'Ciencia Ficción':
+      case 'CienciaFicción':
         return 'https://i.postimg.cc/ryfjs02J/ai-generated-8548276.jpg';
       case 'Mitología':
         return 'https://i.postimg.cc/8k4KvXML/dragon-9017341-1920.png';

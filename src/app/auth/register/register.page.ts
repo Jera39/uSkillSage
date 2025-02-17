@@ -19,6 +19,7 @@ export class RegisterPage implements OnInit {
     heroName: '', // Nombre del héroe
     email: '',    // Correo electrónico
     genre: '',    // Género narrativo
+    gender: '',
     password: ''  // Contraseña
   };
 

@@ -76,11 +76,11 @@ export class RegisterPage implements OnInit {
 
   claseFondo() {
     switch (this.user.genre) {
-      case 'fantasy':
+      case 'Fantasía':
         return 'fondo-fantasy';
-      case 'sci-fi':
+      case 'Ciencia Ficción':
         return 'fondo-sci-fi';
-      case 'mitology':
+      case 'Mitología':
         return 'fondo-mitology';
       default:
         return 'fondo-default';

@@ -1,7 +1,8 @@
 import { AuthService } from './../../services/auth.service';
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, LoadingController, NavController } from '@ionic/angular';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,8 @@ export class RegisterPage implements OnInit {
 
   generoNarrativo: string = ''
   imagenFondo: string = ''
-
+  isLoading: boolean = false;
+  error: string | null = null;
 
   user = {
     heroName: '', // Nombre del héroe
@@ -23,13 +25,13 @@ export class RegisterPage implements OnInit {
     password: ''  // Contraseña
   };
 
-  error: string | null = null;
-
   constructor(
     private navCtrl: NavController, 
     private authService: AuthService, 
     private router: Router,
     private alertController: AlertController,
+    private loadingController: LoadingController,
+    private cdr: ChangeDetectorRef,
   ) { }
 
   ngOnInit() {
@@ -46,10 +48,13 @@ export class RegisterPage implements OnInit {
   }
 
   async register() {
+    console.log('Iniciando proceso de registro...');
+    this.isLoading = true;
+
     try {
-      const response = await this.authService.register(this.user).toPromise();
+      console.log('Enviando solicitud de registro...');
+      const response = await firstValueFrom(this.authService.register(this.user));
       console.log('Registro exitoso:', response);
-      this.router.navigate(['/login']); // Redirigir al login después del registro
     } catch (err: any) {
       console.error('Error al registrar:', err);
   
@@ -62,6 +67,11 @@ export class RegisterPage implements OnInit {
   
       // Mostrar una alerta con el mensaje de error
       this.showAlert('Error', this.error || 'Ocurrió un error inesperado.');
+    } finally {
+      console.log('Finalizando proceso de registro...');
+      this.isLoading = false;
+      this.cdr.detectChanges();
+      this.router.navigate(['/login']); // Redirigir al login después del registro
     }
   }
 

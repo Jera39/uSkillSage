@@ -51,4 +51,11 @@
   <div class="ion-img">
     <img [src]="fondo()" />
   </div>
+
+  <ion-loading
+    [isOpen]="isLoading"
+    message="Creando cuenta de Héroe..."
+    spinner="circles"
+    [duration]="0">
+  </ion-loading>
 </ion-content>

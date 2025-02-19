@@ -1,0 +1,36 @@
+<ion-split-pane when="md" contentId="main">
+  <ion-menu contentId="main">
+    <ion-header>
+      <ion-toolbar color="tertiary">
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-list>
+        <ion-item button routerLink="/menu-admin/page-genres">
+          <ion-label class="ion-text-center">Generos Narrativos</ion-label>
+        </ion-item>
+        <ion-item button>
+          <ion-label class="ion-text-center">Rutas Primarias</ion-label>
+        </ion-item>
+        <ion-item button>
+          <ion-label class="ion-text-center">Aspectos Específicos</ion-label>
+        </ion-item>
+        <ion-item button>
+          <ion-label class="ion-text-center">Gestión de Misiones</ion-label>
+        </ion-item>
+        <ion-item button>
+          <ion-label class="ion-text-center">Gestión de Logros</ion-label>
+        </ion-item>
+      </ion-list> 
+    </ion-content>
+  </ion-menu>
+
+  <div class="ion-page" id="main">
+    <ion-router-outlet>
+      <div class="fondoPrincipal">
+        <img src="https://u-skill-sage.vercel.app/assets/images/fondoMenuAdmin.png" alt="Imagen de fondo" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+    </ion-router-outlet>
+  </div>
+</ion-split-pane>

@@ -23,6 +23,14 @@ const routes: Routes = [
     path: 'ruta-inicial',
     loadChildren: () => import('./onboarding/ruta-inicial/ruta-inicial.module').then( m => m.RutaInicialPageModule)
   },
+  {
+    path: 'menu-admin',
+    loadChildren: () => import('./admin/menu-admin/menu-admin.module').then( m => m.MenuAdminPageModule)
+  },
+  {
+    path: 'pages-admin',
+    loadChildren: () => import('./admin/pages-admin/pages-admin.module').then( m => m.PagesAdminPageModule)
+  },
 ];
 
 @NgModule({

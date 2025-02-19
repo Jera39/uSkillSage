@@ -3,5 +3,19 @@ ion-label {
 }
 
 .fondoPrincipal {
-    position: relative; /* Necesario para posicionar la imagen dentro del div */
-  }
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fondoPrincipal img {
+    width: 100%;
+    /* La imagen ocupa todo el ancho del contenedor */
+    height: 100%;
+    /* La imagen ocupa todo el alto del contenedor */
+    object-fit: cover;
+    /* La imagen se escala para cubrir todo el contenedor, manteniendo la relación de aspecto */
+}

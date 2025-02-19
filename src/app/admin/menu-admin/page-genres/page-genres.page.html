@@ -1,13 +1,70 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>pageGenres</ion-title>
+    <ion-buttons slot="start" (click)="backMenu()">
+      <ion-icon name="arrow-back" class="icon-toolbar"></ion-icon>
+    </ion-buttons>
+    <ion-title>Generos Narrativos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">pageGenres</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="6" size-md="4" size-lg="3">
+        <ion-button (click)="NuevoGenero()" expand="block" fill="outline" shape="round">
+          <ion-icon name="add" class="icon-add"></ion-icon>
+          Nuevo Género Narrativo
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid fixed>
+    <ion-row *ngIf="view_add_input">
+      <ion-col size="12" size-sm="12" size-sm="6">
+        <ion-input label="Nombre" label-placement="stacked" fill="outline" placeholder="Nombre del Género"
+          [(ngModel)]="name_genre" disabled="{{off_input}}"></ion-input>
+      </ion-col>
+
+      <ion-col size="6" size-sm="6" size-md="3" size-lg="3" class="ion-text-center">
+        <ion-button fill="outline" shape="round" (click)="agregarGenero()">
+          <ion-icon slot="start" name="pencil-outline"></ion-icon>
+          {{ tipoBoton }}
+        </ion-button>
+      </ion-col>
+
+      <ion-col size="6" size-sm="6" size-md="3" size-lg="3" class="ion-text-center">
+        <ion-button fill="outline" color="danger" shape="round" (click)="Cancelar()">
+          <ion-icon name="remove-circle-outline"></ion-icon>
+          CANCELAR
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card class="row-header">
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="2">N°</ion-col>
+          <ion-col size="6">Nombre del Genero Narrativo</ion-col>
+          <ion-col size="2"></ion-col>
+          <ion-col size="2"></ion-col>
+        </ion-row>
+      </ion-grid>
+  </ion-card>
+  <ion-card *ngFor="let data of datalistgenre; let indice = index" class="row-content">
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="2">{{ indice +1 }}</ion-col>
+        <ion-col size="6">{{ data.name}}</ion-col>
+        <ion-col size="2">
+          <ion-icon name="pencil-outline" button tappable (click)="editargenre(data,indice)"
+            class="pencil-icon"></ion-icon>
+        </ion-col>
+        <ion-col size="2">
+          <ion-icon name="trash" button tappable (click)="AlertaEliminar(data,indice)" class="trash-icon"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 </ion-content>

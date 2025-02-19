@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-menu-admin',
@@ -8,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuAdminPage implements OnInit {
 
-  constructor() { }
+  constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
+    this.cdr.detectChanges();
   }
 
 }

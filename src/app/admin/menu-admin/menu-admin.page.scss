@@ -1,3 +1,14 @@
+ion-toolbar{
+    --background: #181950;
+    --color: white;
+    // --min-height: 80px;
+}
+
+ion-menu{
+    --background: #181950;
+    --color: white;
+}
+
 ion-label {
     margin: 20px 0px;
 }
@@ -19,3 +30,4 @@ ion-label {
     object-fit: cover;
     /* La imagen se escala para cubrir todo el contenedor, manteniendo la relación de aspecto */
 }
+

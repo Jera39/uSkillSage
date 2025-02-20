@@ -16,4 +16,21 @@ ion-toolbar{
 margin-right: 20px;
 }
 
-ion-button{}
+ion-col{
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+
+.row-header{
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    background-color: #3a2e7dd2;
+    color: #fff;
+    height: 50px;
+}
+
+.row-content{
+    background-color: #3a2e7d1a;
+}

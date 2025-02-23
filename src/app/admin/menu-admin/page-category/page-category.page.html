@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="backMenu()">
+      <ion-icon name="arrow-back" class="icon-toolbar"></ion-icon>
+    </ion-buttons>
+    <ion-title>Categorías</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Botón para agregar una nueva categoría -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="6" size-md="4" size-lg="3">
+        <ion-button (click)="NuevoCategoria()" expand="block" fill="outline" shape="round">
+          <ion-icon name="add" class="icon-add"></ion-icon>
+          Nueva Categoría
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Formulario para agregar/editar una categoría -->
+  <ion-grid fixed *ngIf="view_add_input">
+    <ion-row>
+      <!-- Campo para el Nombre de la Categoría -->
+      <ion-col size="12" size-sm="6" size-md="6" size-lg="6">
+        <ion-input
+          label="Nombre de la Categoría"
+          label-placement="stacked"
+          fill="outline"
+          placeholder="Nombre de la categoría"
+          [(ngModel)]="name_category"
+          [disabled]="off_input">
+        </ion-input>
+      </ion-col>
+
+      <!-- Campo para la Descripción de la Categoría -->
+      <ion-col size="12" size-sm="6" size-md="6" size-lg="6">
+        <ion-input
+          label="Descripción de la Categoría"
+          label-placement="stacked"
+          fill="outline"
+          placeholder="Descripción de la categoría"
+          [(ngModel)]="description"
+          [disabled]="off_input">
+        </ion-input>
+      </ion-col>
+    </ion-row>
+
+    <!-- Botones para Guardar y Cancelar -->
+    <ion-row>
+      <ion-col size="6" size-sm="6" size-md="3" size-lg="3" class="ion-text-center">
+        <ion-button fill="outline" shape="round" (click)="agregarCategoria()">
+          <ion-icon slot="start" name="pencil-outline"></ion-icon>
+          {{ tipoBoton }}
+        </ion-button>
+      </ion-col>
+
+      <ion-col size="6" size-sm="6" size-md="3" size-lg="3" class="ion-text-center">
+        <ion-button fill="outline" color="danger" shape="round" (click)="Cancelar()">
+          <ion-icon name="remove-circle-outline"></ion-icon>
+          CANCELAR
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Encabezado de la tabla -->
+  <ion-card class="row-header">
+    <ion-grid fixed>
+      <ion-row class="ion-text-center">
+        <ion-col size="0.5">N°</ion-col>
+        <ion-col size="3">Categoría</ion-col>
+        <ion-col size="6">Descripción</ion-col>
+        <ion-col size="1">Estado</ion-col>
+        <ion-col size="1.5">Acciones</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <!-- Lista de categorías -->
+  <ion-card *ngFor="let data of datalistCategory; let indice = index" class="row-content">
+    <ion-grid fixed>
+      <ion-row class="ion-text-center">
+        <ion-col size="0.5">{{ indice + 1 }}</ion-col>
+        <ion-col size="3">{{ data.name }}</ion-col>
+        <ion-col size="6">{{ data.description }}</ion-col>
+        <ion-col size="1">{{ data.isActive ? 'Activo' : 'Inactivo' }}</ion-col>
+        <ion-col size="1.5">
+          <ion-icon
+            name="pencil-outline"
+            button
+            tappable
+            (click)="editCategory(data)"
+            class="pencil-icon">
+          </ion-icon>
+          <ion-icon
+            name="trash"
+            button
+            tappable
+            (click)="AlertaEliminar(data)"
+            class="trash-icon">
+          </ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>

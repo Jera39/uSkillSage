@@ -142,6 +142,7 @@ export class PageGenresPage implements OnInit {
     try {
       const response: any = await this.authService.manageGenres('G').toPromise();
       this.datalistgenre = response; // Asignar la lista de géneros
+      console.log('datalistgenre', JSON.stringify(response));
     } catch (error) {
       console.error('Error al obtener los géneros:', error);
       this.presentAlert('Error al cargar los géneros.');

@@ -1,0 +1,154 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="backMenu()">
+      <ion-icon name="arrow-back" class="icon-toolbar"></ion-icon>
+    </ion-buttons>
+    <ion-title>Subcategorías</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br />
+  <!-- Selector de categoría -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="6" size-md="4" size-lg="3">
+        <ion-select label="Elegir Categoría" label-placement="stacked" fill="outline" [(ngModel)]="selectedCategoryId"
+          (ionChange)="cargarSubcategorias()">
+          <ion-select-option value="">Mostrar todos</ion-select-option>
+          <ion-select-option *ngFor="let category of categoriesList" [value]="category.id">
+            {{ category.name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Mostrar todas las categorías y sus subcategorías -->
+  <ng-container *ngIf="selectedCategoryId === ''">
+    <ion-card *ngFor="let category of categoriesList" class="category-card">
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">{{ category.name }}</ion-card-title>
+      </ion-card-header>
+
+      <!-- Tabla de subcategorías -->
+      <ion-card class="row-header">
+        <ion-grid fixed>
+          <ion-row class="ion-text-center">
+            <ion-col size="1">N°</ion-col>
+            <ion-col size="3">Subcategoría</ion-col>
+            <ion-col size="6">Descripción</ion-col>
+            <ion-col size="2">Acciones</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+
+      <!-- Lista de subcategorías -->
+      <ion-card *ngFor="let subcategory of category.subcategories; let indice = index" class="row-content">
+        <ion-grid fixed>
+          <ion-row class="ion-text-center">
+            <ion-col size="1">{{ indice + 1 }}</ion-col>
+            <ion-col size="3">{{ subcategory.name }}</ion-col>
+            <ion-col size="6">{{ subcategory.description }}</ion-col>
+            <ion-col size="2">
+              <ion-icon name="pencil-outline" button tappable (click)="editarSubcategoria(subcategory)"
+                class="pencil-icon">
+              </ion-icon>
+              <ion-icon name="trash" button tappable (click)="alertaEliminarSubcategoria(subcategory)"
+                class="trash-icon">
+              </ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+
+      <!-- Botón para agregar una nueva subcategoría -->
+            <ion-button (click)="nuevaSubcategoria(category.id)" expand="block" fill="outline" shape="round" class="add_subcategory_button">
+              <ion-icon name="add" class="icon-add"></ion-icon>
+              Agregar Subcategoría
+            </ion-button>
+    </ion-card>
+  </ng-container>
+
+  <!-- Mostrar una categoría específica y sus subcategorías -->
+  <ng-container *ngIf="selectedCategoryId !== ''">
+    <ion-card *ngIf="selectedCategory" class="category-card">
+      <ion-card-header>
+        <ion-card-title>{{ selectedCategory.name }}</ion-card-title>
+      </ion-card-header>
+
+      <!-- Tabla de subcategorías -->
+      <ion-card class="row-header">
+        <ion-grid fixed>
+          <ion-row class="ion-text-center">
+            <ion-col size="1">N°</ion-col>
+            <ion-col size="3">Subcategoría</ion-col>
+            <ion-col size="6">Descripción</ion-col>
+            <ion-col size="2">Acciones</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+
+      <!-- Lista de subcategorías -->
+      <ion-card *ngFor="let subcategory of selectedCategory.subcategories; let indice = index" class="row-content">
+        <ion-grid fixed>
+          <ion-row class="ion-text-center">
+            <ion-col size="1">{{ indice + 1 }}</ion-col>
+            <ion-col size="3">{{ subcategory.name }}</ion-col>
+            <ion-col size="6">{{ subcategory.description }}</ion-col>
+            <ion-col size="2">
+              <ion-icon name="pencil-outline" button tappable (click)="editarSubcategoria(subcategory)"
+                class="pencil-icon">
+              </ion-icon>
+              <ion-icon name="trash" button tappable (click)="alertaEliminarSubcategoria(subcategory)"
+                class="trash-icon">
+              </ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+
+      <!-- Botón para agregar una nueva subcategoría -->
+      <ion-button (click)="nuevaSubcategoria(selectedCategory.id)" expand="block" fill="outline" shape="round"
+        class="add_subcategory_button">
+        <ion-icon name="add" class="icon-add"></ion-icon>
+        Agregar Subcategoría
+      </ion-button>
+    </ion-card>
+  </ng-container>
+
+  <!-- Formulario para agregar/editar una subcategoría -->
+
+  <ion-modal [isOpen]="view_add_input">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button fill="outline" shape="round" (click)="guardarSubcategoria()">
+              <ion-icon slot="start" name="pencil-outline"></ion-icon>
+              {{ tipoBoton }}
+            </ion-button>
+          </ion-buttons>
+          <ion-title class="ion-text-center">📄</ion-title>
+          <ion-buttons slot="end">
+            <ion-button fill="outline" color="danger" shape="round" (click)="cancelarSubcategoria()">
+              <ion-icon name="remove-circle-outline"></ion-icon>
+              CANCELAR
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <br />
+        <!-- Campo para el Nombre de la Subcategoría -->
+        <ion-input label="Nombre de la Subcategoría" label-placement="stacked" fill="outline"
+          placeholder="Nombre de la subcategoría" [(ngModel)]="name_subcategory" [disabled]="off_input">
+        </ion-input>
+        <br /><br />
+        <ion-input label="Descripción de la Subcategoría" label-placement="stacked" fill="outline"
+          placeholder="Descripción de la subcategoría" [(ngModel)]="description_subcategory" [disabled]="off_input">
+        </ion-input>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

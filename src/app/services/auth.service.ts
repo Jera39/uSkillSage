@@ -7,18 +7,18 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private apiUrl = 'https://uskillsage-back.onrender.com/api';
-  // private apiUrl = 'http://localhost:3000/api';
+  // private apiUrl = 'https://uskillsage-back.onrender.com/api';
+  private apiUrl = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient) { }
 
-    /**
-   * Método genérico para gestionar géneros narrativos.
-   * @param action - Acción a realizar ('C': Crear, 'U': Actualizar, 'D': Desactivar, 'G': Obtener)
-   * @param genreId - ID del género (requerido para 'U' y 'D')
-   * @param genreData - Datos del género (requerido para 'C' y 'U')
-   * @returns Observable con la respuesta del backend
-   */
+  /**
+ * Método genérico para gestionar géneros narrativos.
+ * @param action - Acción a realizar ('C': Crear, 'U': Actualizar, 'D': Desactivar, 'G': Obtener)
+ * @param genreId - ID del género (requerido para 'U' y 'D')
+ * @param genreData - Datos del género (requerido para 'C' y 'U')
+ * @returns Observable con la respuesta del backend
+ */
 
   register(user: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/users`, user);
@@ -47,5 +47,30 @@ export class AuthService {
       default:
         throw new Error('Acción no válida. Usa "C", "U", "D" o "G".');
     }
+  }
+
+  manageCategories(action: string, categoryId?: string, categoryData?: any): Observable<any> {
+    switch (action.toUpperCase()) {
+      case 'C': // Crear una categoría
+        return this.http.post(`${this.apiUrl}/categories?action=C`, categoryData);
+
+      case 'U': // Actualizar una categoría
+        if (!categoryId) throw new Error('El ID de la categoría es obligatorio para actualizar.');
+        return this.http.put(`${this.apiUrl}/categories/${categoryId}?action=U`, categoryData);
+
+      case 'D': // Desactivar una categoría
+        if (!categoryId) throw new Error('El ID de la categoría es obligatorio para desactivar.');
+        return this.http.delete(`${this.apiUrl}/categories/${categoryId}?action=D`);
+
+      case 'G': // Obtener todas las categorías activas
+        return this.http.get(`${this.apiUrl}/categories?action=G`);
+
+      default:
+        throw new Error('Acción no válida. Usa "C", "U", "D" o "G".');
+    }
+  }
+
+  getGenresForCategories(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/categories/genres`);
   }
 }

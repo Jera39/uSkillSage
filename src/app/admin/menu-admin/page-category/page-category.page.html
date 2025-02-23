@@ -70,11 +70,11 @@
   <ion-card class="row-header">
     <ion-grid fixed>
       <ion-row class="ion-text-center">
-        <ion-col size="0.5">N°</ion-col>
-        <ion-col size="3">Categoría</ion-col>
-        <ion-col size="6">Descripción</ion-col>
-        <ion-col size="1">Estado</ion-col>
-        <ion-col size="1.5">Acciones</ion-col>
+        <ion-col size-lg="0.5" size-xs="0.5">N°</ion-col>
+        <ion-col size-lg="3" size-xs="4">Categoría</ion-col>
+        <ion-col size-lg="6" size-xs="5.5">Descripción</ion-col>
+        <ion-col size-lg="1" size-xs="0" class="hide-on-mobile">Estado</ion-col>
+        <ion-col size-lg="1.5" size-xs="2">Acciones</ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>
@@ -83,11 +83,11 @@
   <ion-card *ngFor="let data of datalistCategory; let indice = index" class="row-content">
     <ion-grid fixed>
       <ion-row class="ion-text-center">
-        <ion-col size="0.5">{{ indice + 1 }}</ion-col>
-        <ion-col size="3">{{ data.name }}</ion-col>
-        <ion-col size="6">{{ data.description }}</ion-col>
-        <ion-col size="1">{{ data.isActive ? 'Activo' : 'Inactivo' }}</ion-col>
-        <ion-col size="1.5">
+        <ion-col size-lg="0.5" size-xs="0.5">{{ indice + 1 }}</ion-col>
+        <ion-col size-lg="3" size-xs="4">{{ data.name }}</ion-col>
+        <ion-col size-lg="6" size-xs="5.5">{{ data.description }}</ion-col>
+        <ion-col size-lg="1" size-xs="0" class="hide-on-mobile">{{ data.isActive ? 'Activo' : 'Inactivo' }}</ion-col>
+        <ion-col size-lg="1.5" size-xs="2">
           <ion-icon
             name="pencil-outline"
             button

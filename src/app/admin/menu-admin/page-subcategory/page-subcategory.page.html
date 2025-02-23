@@ -28,7 +28,7 @@
   <ng-container *ngIf="selectedCategoryId === ''">
     <ion-card *ngFor="let category of categoriesList" class="category-card">
       <ion-card-header>
-        <ion-card-title class="ion-text-center">{{ category.name }}</ion-card-title>
+        <ion-card-title class="ion-text-center categorytitle">{{ category.name }}</ion-card-title>
       </ion-card-header>
 
       <!-- Tabla de subcategorías -->
@@ -74,7 +74,7 @@
   <ng-container *ngIf="selectedCategoryId !== ''">
     <ion-card *ngIf="selectedCategory" class="category-card">
       <ion-card-header>
-        <ion-card-title>{{ selectedCategory.name }}</ion-card-title>
+        <ion-card-title class="ion-text-center categorytitle">{{ selectedCategory.name }}</ion-card-title>
       </ion-card-header>
 
       <!-- Tabla de subcategorías -->

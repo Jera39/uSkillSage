@@ -30,6 +30,7 @@ ion-col {
     background-color: #3a2e7dd2;
     color: #fff;
     height: 50px;
+    margin: 10px 20px;
 }
 
 .row-content {
@@ -37,6 +38,7 @@ ion-col {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 8px 20px;
 }
 
 .category-card {
@@ -52,8 +54,13 @@ ion-modal {
 }
 
 .add_subcategory_button{
-    margin: 10px auto;
+    margin: 20px auto;
     max-width: 50%;
+}
+
+.categorytitle{
+    color: #342972;
+    font-weight: bold;
 }
 
 /* Estilos para pantallas más pequeñas (móviles) */

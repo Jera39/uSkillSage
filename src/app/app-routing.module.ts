@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthguardService } from './services/authguard.service';
 
 const routes: Routes = [
   {
@@ -21,15 +22,18 @@ const routes: Routes = [
   },
   {
     path: 'ruta-inicial',
-    loadChildren: () => import('./onboarding/ruta-inicial/ruta-inicial.module').then( m => m.RutaInicialPageModule)
+    loadChildren: () => import('./onboarding/ruta-inicial/ruta-inicial.module').then( m => m.RutaInicialPageModule),
+    canActivate: [AuthguardService]
   },
   {
     path: 'menu-admin',
-    loadChildren: () => import('./admin/menu-admin/menu-admin.module').then( m => m.MenuAdminPageModule)
+    loadChildren: () => import('./admin/menu-admin/menu-admin.module').then( m => m.MenuAdminPageModule),
+    canActivate: [AuthguardService]
   },
   {
     path: 'pages-admin',
-    loadChildren: () => import('./admin/pages-admin/pages-admin.module').then( m => m.PagesAdminPageModule)
+    loadChildren: () => import('./admin/pages-admin/pages-admin.module').then( m => m.PagesAdminPageModule),
+    canActivate: [AuthguardService]
   },
 ];
 

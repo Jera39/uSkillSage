@@ -10,6 +10,9 @@ export class AuthService {
   private apiUrl = 'https://uskillsage-back.onrender.com/api';
   // private apiUrl = 'http://localhost:3000/api';
 
+  private tokenKey = 'authToken';
+  private userKey = 'currentUser'; 
+
   constructor(private http: HttpClient) { }
 
   /**
@@ -26,6 +29,32 @@ export class AuthService {
 
   login(credentials: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, credentials);
+  }
+
+  isAuthenticated(): boolean {
+    const token = localStorage.getItem(this.tokenKey);
+    return !!token; // Devuelve true si el token existe, false si no
+  }
+
+  isAdmin(): boolean {
+    const user = JSON.parse(localStorage.getItem(this.userKey) || '{}');
+    return user.isAdmin === true; // Verifica si el usuario es administrador
+  }
+
+  setUser(user: any): void {
+    localStorage.setItem(this.userKey, JSON.stringify(user)); // Almacena los datos del usuario
+  }
+
+  setToken(token: string): void {
+    localStorage.setItem(this.tokenKey, token);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem(this.tokenKey);
+  }
+
+  logout(): void {
+    localStorage.removeItem(this.tokenKey);
   }
 
   manageGenres(action: string, genreId?: string, genreData?: any): Observable<any> {

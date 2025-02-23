@@ -29,7 +29,7 @@ export class LoginPage implements OnInit {
   }
 
   backHome(){
-    this.navCtrl.back();
+    this.navCtrl.navigateRoot('/home');
   }
 
   async login() {
